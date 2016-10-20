@@ -1526,6 +1526,7 @@ enum bfd_architecture
 #define bfd_mach_mips4600              4600
 #define bfd_mach_mips4650              4650
 #define bfd_mach_mips5000              5000
+#define bfd_mach_mips5900              5900
 #define bfd_mach_mips6000              6000
 #define bfd_mach_mips8000              8000
 #define bfd_mach_mips10000             10000
@@ -2233,6 +2234,7 @@ to compensate for the borrow when the low bits are added.  */
   BFD_RELOC_MIPS_REL16,
   BFD_RELOC_MIPS_RELGOT,
   BFD_RELOC_MIPS_JALR,
+  BFD_RELOC_MIPS15_S3,
 
 /* Fujitsu Frv Relocations.  */
   BFD_RELOC_FRV_LABEL16,
@@ -2244,6 +2246,22 @@ to compensate for the borrow when the low bits are added.  */
   BFD_RELOC_FRV_GPREL32,
   BFD_RELOC_FRV_GPRELHI,
   BFD_RELOC_FRV_GPRELLO,
+
+/* MIPS DVP Relocations.
+This is an 11-bit pc relative reloc.  The recorded address is for the
+lower instruction word, and the value is in 128 bit units.  */
+  BFD_RELOC_MIPS_DVP_11_PCREL,
+
+/* This is a 27 bit address left shifted by 4.  */
+  BFD_RELOC_MIPS_DVP_27_S4,
+
+/* This is the 11 bit offset operand of ilw/stw instructions
+left shifted by 4.  */
+  BFD_RELOC_MIPS_DVP_11_S4,
+
+/* This is the 15 bit unsigned immediate operand of the iaddiu instruction
+left shifted by 3.  */
+  BFD_RELOC_MIPS_DVP_U15_S3,
 
 
 /* i386/elf relocations  */

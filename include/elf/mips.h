@@ -76,6 +76,13 @@ START_RELOC_NUMBERS (elf_mips_reloc_type)
   /* These relocs are used for the mips16.  */
   RELOC_NUMBER (R_MIPS16_26, 100)
   RELOC_NUMBER (R_MIPS16_GPREL, 101)
+  /* This is used by a mips co-processor instruction.  */
+  RELOC_NUMBER (R_MIPS15_S3, 119)
+  /* These relocs are for the dvp.  */
+  RELOC_NUMBER (R_MIPS_DVP_11_PCREL, 120)
+  RELOC_NUMBER (R_MIPS_DVP_27_S4, 121)
+  RELOC_NUMBER (R_MIPS_DVP_11_S4, 122)
+  RELOC_NUMBER (R_MIPS_DVP_U15_S3, 123)
   /* These are GNU extensions to handle embedded-pic.  */
   RELOC_NUMBER (R_MIPS_PC32, 248)
   RELOC_NUMBER (R_MIPS_PC64, 249)
@@ -177,6 +184,7 @@ END_RELOC_NUMBERS (R_MIPS_maxext)
 #define E_MIPS_MACH_4650	0x00850000
 #define E_MIPS_MACH_4111	0x00880000
 #define E_MIPS_MACH_SB1         0x008a0000
+#define E_MIPS_MACH_5900	0x00920000
 
 /* Processor specific section indices.  These sections do not actually
    exist.  Symbols with a st_shndx field corresponding to one of these

@@ -138,6 +138,28 @@ Software Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  *
 #define OP_SH_VSEL		21
 #define OP_MASK_VSEL		0x1f
 
+#define OP_MASK_VECBYTE		0x7	/* Selector field is really 4 bits,
+					   but 0x8-0xf don't select bytes.  */
+#define OP_SH_VECBYTE		22
+#define OP_MASK_VECALIGN	0x7	/* Vector byte-align (alni.ob) op.  */
+#define OP_SH_VECALIGN		21
+#define OP_SH_VADDI		6
+#define OP_MASK_VADDI		0x1f
+#define OP_SH_VUTREG		16
+#define OP_MASK_VUTREG		0x1f
+#define OP_SH_VUSREG		11
+#define OP_MASK_VUSREG		0x1f
+#define OP_SH_VUDREG		6
+#define OP_MASK_VUDREG		0x1f
+#define OP_SH_VUFSF		21
+#define OP_MASK_VUFSF		0x3
+#define OP_SH_VUFTF		23
+#define OP_MASK_VUFTF		0x3
+#define OP_SH_VUDEST		21
+#define OP_MASK_VUDEST		0xf
+#define OP_SH_VUCALLMS		6
+#define OP_MASK_VUCALLMS	0x7fff
+
 /* Values in the 'VSEL' field.  */
 #define MDMX_FMTSEL_IMM_QH	0x1d
 #define MDMX_FMTSEL_IMM_OB	0x1e
@@ -221,6 +243,28 @@ struct mips_opcode
    "G" 5 bit destination register (OP_*_RD)
    "H" 3 bit sel field for (d)mtc* and (d)mfc* (OP_*_SEL)
    "P" 5 bit performance-monitor register (OP_*_PERFREG)
+   "e" 5 bit vector register byte specifier (OP_*_VECBYTE)
+   "%" 3 bit immediate vr5400 vector alignment operand (OP_*_VECALIGN)
+   see also "k" above
+   "0" vu0 immediate for viaddi (OP_*_VADDI)
+   "1" vu0 fp reg position 1 (OP_*_VUTREG)
+   "2" vu0 fp reg position 2 (OP_*_VUSREG)
+   "3" vu0 fp reg position 3 (OP_*_VUDREG)
+   "4" vu0 int reg position 1 (OP_*_VUTREG)
+   "5" vu0 int reg position 2 (OP_*_VUSREG)
+   "6" vu0 int reg position 3 (OP_*_VURREG)
+   "7" vu0 fp reg with ftf modifier (OP_*_VUTREG and OP_*_VUFTF)
+   "8" vu0 fp reg with fsf modifier (OP_*_VUSREG and OP_*_VUFSF)
+   "9" vi27 for vcallmsr
+   "#" optional suffix that must match if present
+   "K" dest operant completer, must match previous dest if present
+   "&" dest instruction completer (OP_*_VUDEST)
+   ";" dest instruction completer, must by xyz
+   "!" vu0 I register
+   "^" vu0 Q register
+   "_" vu0 R register
+   "@" vu0 ACC register
+   "g" Immediate operand for vcallms instruction. (OP_*_VUCALLMS)
 
    Macro instructions:
    "A" General 32 bit expression
@@ -241,11 +285,13 @@ struct mips_opcode
    Other:
    "()" parens surrounding optional value
    ","  separates operands
+   "[]" brackets around index for vector-op scalar operand specifier (vr5400)
+   "+-" auto inc/dec decorators
 
    Characters used so far, for quick reference when adding more:
-   "<>(),"
-   "ABCDEFGHIJLMNOPQRSTUVWXYZ"
-   "abcdfhijklopqrstuvwxz"
+   "!#%&()+,-0123456789;<>"
+   "ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_"
+   "abcdefghijkl  opqrstuvwx z"
 */
 
 /* These are the bits which may be set in the pinfo field of an
@@ -362,9 +408,10 @@ struct mips_opcode
 #define INSN_10000                0x00100000
 /* Broadcom SB-1 instruction.  */
 #define INSN_SB1                  0x00200000
+/* Toshiba R5900 (PlayStation2) instruction.  */
+#define INSN_5900                 0x00400000
 
 /* MIPS ISA defines, use instead of hardcoding ISA level.  */
-
 #define       ISA_UNKNOWN     0               /* Gas internal use.  */
 #define       ISA_MIPS1       (INSN_ISA1)
 #define       ISA_MIPS2       (ISA_MIPS1 | INSN_ISA2)
@@ -389,6 +436,7 @@ struct mips_opcode
 #define CPU_R4600	4600
 #define CPU_R4650	4650
 #define CPU_R5000	5000
+#define CPU_R5900	5900
 #define CPU_R6000	6000
 #define CPU_R8000	8000
 #define CPU_R10000	10000
@@ -414,6 +462,7 @@ struct mips_opcode
      || ((cpu == CPU_R10000 || cpu == CPU_R12000)			\
 	 && ((insn)->membership & INSN_10000) != 0)			\
      || (cpu == CPU_SB1 && ((insn)->membership & INSN_SB1) != 0)	\
+     || (cpu == CPU_R5900 && ((insn)->membership & INSN_5900) != 0)	\
      || 0)	/* Please keep this term for easier source merging.  */
 
 /* This is a list of macro expanded instructions.

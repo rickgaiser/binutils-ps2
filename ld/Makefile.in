@@ -273,6 +273,7 @@ ALL_EMULATIONS = \
 	eelf32frv.o \
 	eelf32i370.o \
 	eelf32l4300.o \
+	eelf32l5900.o \
 	eelf32lmip.o \
 	eelf32lppc.o \
 	eelf32lppcsim.o \
@@ -1303,6 +1304,9 @@ eelf32l4300.c: $(srcdir)/emulparams/elf32l4300.sh \
   $(srcdir)/emulparams/elf32b4300.sh $(srcdir)/emulparams/elf32bmip.sh \
   $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
 	${GENSCRIPTS} elf32l4300 "$(tdir_elf32l4300)"
+eelf32l5900.c: $(srcdir)/emulparams/elf32l5900.sh \
+  $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}
+	${GENSCRIPTS} elf32l5900 "$(tdir_elf32l5900)"
 eelf32lmip.c: $(srcdir)/emulparams/elf32lmip.sh \
   $(srcdir)/emulparams/elf32bmip.sh \
   $(srcdir)/emultempl/elf32.em $(srcdir)/scripttempl/elf.sc ${GEN_DEPENDS}

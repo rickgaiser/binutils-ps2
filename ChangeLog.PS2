@@ -1,0 +1,54 @@
+
+2003-01-20  M. R. Brown <mrbrown@0xd6.org>
+
+	* config.sub: Add configuration names for mips64r5900, mipsEEel, and
+	ee.
+
+	* gas/configure.in,  gas/configure: Add check for R5900.
+	* gas/config/tc-mips: Add more R5900-specific workarounds and
+	warnings.
+
+	* ld/Makefile.am, ld/Makefile.in: Add elf32l5900 emulation support.
+	* ld/configure.tgt: Set the target emulation for R5900 native ELFs.
+	* ld/emulparams/elf32l5900.sh: New file.  R5900 native emulation
+	support.
+
+TAMURA Kent's original ChangeLog:
+
+bfd:
+2002-xx-xx  TAMURA Kent <kent@netbsd.org>
+
+	* archures.c: Add bfd_mach_mips5900.
+	* cpu-mips.c: Add items for R5900.
+	* elf32-mips.c: Add support for MIPS15_S3, MIPS_DVP_11_PCREL,
+	MIPS_DVP_27_S4, MIPS_DVP_11_S4, and  MIPS_DVP_U15_S3 relocations.
+	* elfxx-mips.c (_bfd_elf_mips_mach,
+	 _bfd_mips_elf_final_write_processing): Add mips5900.
+	* reloc.c: Add BFD_RELOC_MIPS15_S3, BFD_RELOC_MIPS_DVP_11_PCREL,
+	BFD_RELOC_MIPS_DVP_27_S4, BFD_RELOC_MIPS_DVP_11_S4, and
+	BFD_RELOC_MIPS_DVP_U15_S3.
+	* bfd-in2.h libbfd.h: Regenerate.
+
+gas:
+2002-xx-xx  TAMURA Kent <kent@netbsd.org>
+
+	* tc-mips.c: Add R5900 support.
+
+include:
+2002-xx-xx  TAMURA Kent <kent@netbsd.org>
+
+	* elf/mips.h: Add R_MIPS15_S3, R_MIPS_DVP_11_PCREL, R_MIPS_DVP_27_S4,
+	R_MIPS_DVP_11_S4, and R_MIPS_DVP_U15_S3 relocation numbers.  Add
+	E_MIPS_MACH_5900.
+	* opcode/mips.h: Add OP_*_VECBYTE, OP_*_VECALIGN, OP_*_VADDI,
+	OP_*_VUTREG, OP_*_VUSREG, OP_*_VUDREG, OP_*_VUFSF, OP_*_VUFTF,
+	OP_*_VUDEST, OP_*_VUCALLMS.  Add note for argument characters,
+	"e%0123456789#K&;!^_@g[]+-".  Add INSN_5900 and CPU_R5900.
+	(OPCODE_IS_MEMBER): Support INSN_5900.
+
+opcodes:
+2002-xx-xx  TAMURA Kent <kent@netbsd.org>
+
+	* mips-dis.c (mips_isa_type): Support R5900.
+	* mips-opc.c: Add R5900 instructions.
+

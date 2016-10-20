@@ -394,6 +394,10 @@ mips_isa_type (mach, isa, cputype)
       *cputype = CPU_R5000;
       *isa = ISA_MIPS4;
       break;
+    case bfd_mach_mips5900:
+      *cputype = CPU_R5900;
+      *isa = ISA_MIPS3;
+      break;
     case bfd_mach_mips6000:
       *cputype = CPU_R6000;
       *isa = ISA_MIPS2;

@@ -1,0 +1,35 @@
+Binutils for Sony Playstation 2
+http://playstation2-linux.com/projects/binutils/
+Release 2.13.2.1-1
+==
+
+This release contains the R5900 and EE modifications against the current
+version of binutils.  It supports building both PS2 native and PS2/Linux
+executables.  It has all of the features of the original 2.9EE port except
+support for the DVP assembler (this will be finished later).
+
+I had started porting the original 2.9EE toolchain in March of 2002
+to binutils 2.12, but several months later someone pointed me to a more
+current patch by TAMURA Kent at 
+http://sources.redhat.com/ml/bug-binutils/2002-q3/msg00364.html.
+
+I have completed his work for the R5900 port, and restored a few compatability
+hacks that were missing from his patch.  I have also added the configuration
+information to target the EE.  You can use the following configuration names
+to build the two different flavours for Linux or native:
+
+	mips64r5900[el], mipsEE[el], ee
+
+If you don't specify the os part of the triplet, -elf is assumed.  Note that
+this port doesn't support building for big-endian R5900 (I don't believe it 
+exists) so all names are forced to the little endian variant.
+
+See the file ChangeLog.PS2 in this directory for a current list of changes.
+There is also a CVS repository that contains a "drop-in" tree against the FSF
+CVS binutils, see the above site for more details.
+
+Please send any questions or comments to binutils-devel@playstation2-linux.com.
+
+--
+M. R. Brown <mrbrown@0xd6.org>
+1/20/03

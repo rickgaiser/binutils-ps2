@@ -134,6 +134,7 @@ DESCRIPTION
 .#define bfd_mach_mips4600		4600
 .#define bfd_mach_mips4650		4650
 .#define bfd_mach_mips5000		5000
+.#define bfd_mach_mips5900		5900
 .#define bfd_mach_mips6000		6000
 .#define bfd_mach_mips8000		8000
 .#define bfd_mach_mips10000		10000
