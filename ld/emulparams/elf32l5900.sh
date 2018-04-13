@@ -20,6 +20,9 @@ EXECUTABLE_SYMBOLS='_DYNAMIC_LINK = 0;'
 OTHER_SECTIONS='
   .gptab.sdata : { *(.gptab.data) *(.gptab.sdata) }
   .gptab.sbss : { *(.gptab.bss) *(.gptab.sbss) }
+  PROVIDE(_heap_size = -1);
+  PROVIDE(_stack = -1);
+  PROVIDE(_stack_size = 128 * 1024);
 '
 ARCH="mips:5900"
 MACHINE=
