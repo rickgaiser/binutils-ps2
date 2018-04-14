@@ -4,7 +4,6 @@ BIG_OUTPUT_FORMAT="elf32-bigmips"
 LITTLE_OUTPUT_FORMAT="elf32-littlemips"
 TEXT_START_ADDR=0x100000
 MAXPAGESIZE=128
-INITIAL_READONLY_SECTIONS='.reginfo : { *(.reginfo) }'
 OTHER_TEXT_SECTIONS='*(.mips16.fn.*) *(.mips16.call.*)'
 OTHER_GOT_SYMBOLS='
   _gp = ALIGN(16) + 0x7ff0;
