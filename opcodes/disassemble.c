@@ -335,13 +335,17 @@ disassembler (enum bfd_architecture a, bfd_boolean big, unsigned long mach,
       disassemble = print_insn_metag;
       break;
 #endif
-#ifdef ARCH_mips
+#if defined(ARCH_mips) || defined(ARCH_dvp)
     case bfd_arch_mips:
+#ifdef ARCH_mips
       if (big)
 	disassemble = print_insn_big_mips;
       else
 	disassemble = print_insn_little_mips;
       break;
+#else
+  disassemble = print_insn_dvp;
+#endif
 #endif
 #ifdef ARCH_mmix
     case bfd_arch_mmix:

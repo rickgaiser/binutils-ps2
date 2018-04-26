@@ -186,6 +186,8 @@ case ${generic_target} in
   d30v-*-*)				fmt=elf ;;
   dlx-*-*)				fmt=elf ;;
 
+  dvp-*-*)				fmt=elf bfd_gas=yes install_tooldir= ;;
+
   epiphany-*-*)				fmt=elf ;;
 
   fr30-*-*)				fmt=elf ;;
@@ -351,6 +353,7 @@ case ${generic_target} in
   mips-*-elf*)				fmt=elf ;;
   mips-*-netbsd*)			fmt=elf em=tmips ;;
   mips-*-openbsd*)			fmt=elf em=tmips ;;
+  mips-*-irx*)				fmt=elf endian=little ;;
 
   mmix-*-*)				fmt=elf ;;
 

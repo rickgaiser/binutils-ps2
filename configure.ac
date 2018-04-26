@@ -1021,6 +1021,9 @@ case "${target}" in
   d30v-*-*)
     noconfigdirs="$noconfigdirs gdb"
     ;;
+  dvp-*-*)
+    noconfigdirs="$noconfigdirs ld"
+    ;;
   fr30-*-elf*)
     noconfigdirs="$noconfigdirs gdb"
     ;;
